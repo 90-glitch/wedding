@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Свадебное приглашение</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #fdf6f0 0%, #f3e5d8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #4e3b2c;
+        }
+
+        .invitation-container {
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+            width: 100%;
+            overflow: hidden;
+            border: 1px solid #e7d7c4;
+            position: relative;
+        }
+
+        .invitation-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #d4a373, #b5838d, #d4a373);
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 30px 20px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20" opacity="0.1"><path d="M10 10 Q 25 0 40 10 Q 55 20 70 10 Q 85 0 100 10" stroke="%23b5838d" fill="none" stroke-width="2"/></svg>') bottom repeat-x;
+        }
+
+        .names {
+            font-size: 3.2rem;
+            font-weight: normal;
+            letter-spacing: 4px;
+            color: #5e3c2c;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .ampersand {
+            font-size: 2.5rem;
+            color: #b5838d;
+            font-style: italic;
+            display: block;
+            margin: 5px 0;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #8b6b4f;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 300;
+            margin-top: 16px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .divider-line {
+            height: 1px;
+            width: 60px;
+            background: #d4a373;
+        }
+
+        .divider-icon {
+            margin: 0 15px;
+            font-size: 1.5rem;
+            color: #b5838d;
+        }
+
+        .card-content {
+            padding: 10px 40px 40px;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #b5838d;
+            margin: 25px 0 15px;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .venue-info {
+            background: #faf6f2;
+            border-radius: 20px;
+            padding: 25px 20px;
+            text-align: center;
+            border: 1px dashed #d4a373;
+            margin-bottom: 30px;
+        }
+
+        .venue-name {
+            font-size: 1.8rem;
+            color: #5e3c2c;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .venue-address {
+            font-size: 1.1rem;
+            color: #6b4f3c;
+            line-height: 1.6;
+        }
+
+        .map-link {
+            display: inline-block;
+            margin-top: 12px;
+            color: #b5838d;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .map-link:hover {
+            border-bottom-color: #b5838d;
+        }
+
+        .question-block {
+            background: #f9f3ec;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #b5838d;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            color: #5e3c2c;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .response-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #ddcebc;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-family: 'Georgia', serif;
+            color: #4e3b2c;
+            background: white;
+            outline: none;
+            transition: 0.3s;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .response-input:focus {
+            border-color: #b5838d;
+            box-shadow: 0 0 0 3px rgba(181, 131, 141, 0.2);
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: #b5838d;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 300;
+            margin-top: 15px;
+        }
+
+        .submit-btn:hover {
+            background: #a06b78;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(181, 131, 141, 0.3);
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 25px;
+            color: #b1a08b;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .thank-you-message {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            color: #5e3c2c;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 480px) {
+            .names {
+                font-size: 2.5rem;
+            }
+            .card-content {
+                padding: 10px 25px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="invitation-container">
+        <div class="header">
+            <h1 class="names">
+                Александр <span class="ampersand">&</span> Анастасия
+            </h1>
+            <p class="subtitle">приглашают вас разделить радость 01.08.2026 г.</p>
+        </div>
+
+        <div class="divider">
+            <span class="divider-line"></span>
+            <span class="divider-icon">♥</span>
+            <span class="divider-line"></span>
+        </div>
+
+        <div class="card-content" id="form-content">
+            <div class="section-title">Место торжества</div>
+            <div class="venue-info">
+                <div class="venue-name">Кафе «Беркат»</div>
+                <div class="venue-address">
+                    п. Палатка, ул. Спортивная, 10А
+                </div>
+                <a class="map-link" href="https://yandex.ru/maps/?text=поселок%20Палатка,%20Спортивная%20улица,%2010А" target="_blank">
+                    📍 Открыть на карте
+                </a>
+            </div>
+
+            <div class="question-block">
+                <p class="question-text">🍷 Какой алкоголь вы предпочитаете?</p>
+                <textarea 
+                    class="response-input" 
+                    id="drinkPreference" 
+                    placeholder="Ваш ответ (например: красное полусладкое вино, виски, пиво, шампанское...)"
+                    required
+                ></textarea>
+            </div>
+
+            <button class="submit-btn" id="submitBtn">Отправить ответ</button>
+            <p class="footer-note">Мы учтём ваши пожелания при составлении меню ✨</p>
+        </div>
+
+        <!-- ИСПРАВЛЕНИЕ: id изменён на thank-you-message -->
+        <div class="thank-you-message" id="thank-you-message">
+            <div style="font-size: 3rem; margin-bottom: 20px;">💌</div>
+            <h2>Спасибо!</h2>
+            <p>Ваш ответ получен.<br>Ждём вас на празднике!</p>
+        </div>
+    </div>
+
+    <script>
+        const TELEGRAM_BOT_TOKEN = '8656184234:AAEipoAkRVfyiKpvgmyw0OCYVOn68tBJugg'; 
+        const TELEGRAM_CHAT_ID = '973716775';     
+
+        const formContent = document.getElementById('form-content');
+        // ИСПРАВЛЕНИЕ: ищем элемент с id 'thank-you-message'
+        const thankYouMessage = document.getElementById('thank-you-message');
+        const submitBtn = document.getElementById('submitBtn');
+        const drinkInput = document.getElementById('drinkPreference');
+
+        async function submitResponse() {
+            const answer = drinkInput.value.trim();
+            if (!answer) {
+                alert('Пожалуйста, напишите ваш ответ.');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Отправляется...';
+
+            try {
+                await sendToTelegram(answer);
+                formContent.style.display = 'none';
+                thankYouMessage.style.display = 'block';
+            } catch (error) {
+                alert('Ошибка при отправке. Пожалуйста, попробуйте позже.');
+                console.error(error);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Отправить ответ';
+            }
+        }
+
+        async function sendToTelegram(message) {
+            const text = `🥂 *Новое предпочтение по алкоголю:*\n"${message}"\n\nГость ответил: ${new Date().toLocaleString('ru-RU')}`;
+
+            const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: text,
+                    parse_mode: 'Markdown'
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Telegram API error');
+            }
+        }
+
+        submitBtn.addEventListener('click', submitResponse);
+    </script>
+</body>
+</html>
